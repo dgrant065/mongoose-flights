@@ -1,15 +1,19 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const ticketSchema = new Schema({
     seat: {
         type: String,
-        match: 
+        match: /[A-F][1-9]\d?/
     },
     price: {
-        type: Schema.Types.ObjectId
+        type: Number,
+        min: 0
+    },
+    flight: {
+        type: Schema.Types.ObjectId,
         ref: 'Flight'
     }
 })
 
-module.exports = mongoose.model('Ticket', ticketSchema)
+module.exports = mongoose.model('Ticket', ticketSchema);
